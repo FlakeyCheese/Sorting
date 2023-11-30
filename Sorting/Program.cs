@@ -58,6 +58,14 @@ namespace Sorting
                         }
                     case 6:
                         {
+                            watch.Start();
+                            quickSort(temp,0,temp.Length-1);
+                            watch.Stop();
+                            Array.Copy(names, temp, names.Length);//reload unsorted data
+                            break;
+                        }
+                    case 7:
+                        {
                             Environment.Exit(0);
                             break;
                         }
@@ -76,14 +84,15 @@ namespace Sorting
         static int menu()
         {
             int choice = 0;
-            while (choice < 1 || choice > 6)
+            while (choice < 1 || choice > 7)
             {
                 Console.WriteLine("1. Print the array so you can see it's random");
                 Console.WriteLine("2. Insertion Sort");
                 Console.WriteLine("3. Bubble Sort");
                 Console.WriteLine("4. Merge Sort");
                 Console.WriteLine("5. Optimised Bubble Sort");
-                Console.WriteLine("6. Exit");
+                Console.WriteLine("6. Quick Sort");
+                Console.WriteLine("7. Exit");
                 try
                 { choice = Int32.Parse(Console.ReadLine()); }
                 catch
@@ -137,6 +146,55 @@ namespace Sorting
             { return true; }
             else
             { return false; }
+        }
+        //QUICK SORT ...O(log n)
+        static void quickSort(string[] arr, int low, int high)
+        {
+            if(low<high)
+            {
+
+                // pi is partitioning index, arr[p]
+                // is now at right place
+                int pi = partition(arr, low, high);
+
+                // Separately sort elements before
+                // partition and after partition
+                quickSort(arr, low, pi - 1);
+                quickSort(arr, pi + 1, high);
+            }
+        }
+        static int partition(string[] arr, int low, int high)
+        {
+            // pivot
+            string pivot = arr[high];
+
+            // Index of smaller element and
+            // indicates the right position
+            // of pivot found so far
+            int i = (low - 1);
+
+            for (int j = low; j <= high - 1; j++)
+            {
+
+                // If current element is smaller
+                // than the pivot
+                if (compareStrings(arr[j] , pivot))
+                {
+
+                    // Increment index of
+                    // smaller element
+                    i++;
+                    swap(arr, i, j);
+                }
+            }
+            swap(arr, i + 1, high);
+            return (i + 1);
+        }
+        static void swap(string[] arr, int i, int j)
+        {
+            string temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
         }
         // BUBBLE SORT...O(n^2) because of the nested loops
         static void bubbleSort(string[] arr)
@@ -247,5 +305,6 @@ namespace Sorting
                 array[k++] = rightTempArray[j++];
             }
         }
+
     }
 }
