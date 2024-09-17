@@ -14,7 +14,7 @@ namespace Sorting
             Array.Copy(names, temp, names.Length);
             var watch = new System.Diagnostics.Stopwatch();//storing elapsed time using the built in diagnostics
 
-            while (true) //loop for ever OR until 6 chosen
+            while (true) //loop for ever OR until 7 chosen
             {
                 switch (menu())
                 {
@@ -115,7 +115,7 @@ namespace Sorting
             try { qty = Int32.Parse(Console.ReadLine()); }
             catch { Console.WriteLine("OK, you get 10 names \n"); }
 
-            if (qty < 10 || qty > 100000)
+            if (qty < 10 || qty > 1000000)
             {
                 Console.WriteLine("OK, you get 10 names \n");
                 qty = 10; 
