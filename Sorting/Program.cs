@@ -159,7 +159,7 @@ namespace Sorting
             {
                 case 1:break;
                 case 2: Array.Sort(names); break;
-                case 3: Array.Sort(names);break;
+                case 3: Array.Sort(names); Array.Reverse(names);break;
                 default:Console.WriteLine("Random then");break;
 
             }
