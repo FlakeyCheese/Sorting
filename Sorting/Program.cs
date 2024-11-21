@@ -11,6 +11,7 @@ namespace Sorting
         string[] temp;
         static void Main(string[] args)
         {
+            welcomeMessage();
             string[] names = CreateArray();
             string[] temp = new string[names.Length];
             Array.Copy(names, temp, names.Length);
@@ -115,15 +116,21 @@ namespace Sorting
             }
             return choice;
         }
-        static string[] CreateArray()
+        static void welcomeMessage()
         {
-            int qty = 0;
             Console.WriteLine("The program will generate an array of random names. You can then choose different sorting algoritms to apply ");
             Console.WriteLine("Very large numbers (greater than 50,000) may take a long time to sort");
-            Console.WriteLine("How many names do you want (minimum 10, maximum 100,000)?");
-            Console.WriteLine("If you choose a value outside this you will get 10 names");
             
+        }
+        static string[] CreateArray()
+        {
+            int choice;
+            int qty = 0;
+            Console.WriteLine("How many names do you want (minimum 10, maximum 10001,000)?");
+            Console.WriteLine("If you choose a value outside this you will get 10 names");
+
             try { qty = Int32.Parse(Console.ReadLine()); }
+
             catch { Console.WriteLine("OK, you get 10 names \n"); }
 
             if (qty < 10 || qty > 1000000)
@@ -140,6 +147,23 @@ namespace Sorting
             {
                 names[i] = firstLines[randFirst.Next(0, firstLines.Length)] + " " + lastLines[randLast.Next(0, lastLines.Length)];
             }
+            Console.WriteLine("How do you want your names ordered?");
+            Console.WriteLine("1. Random");
+            Console.WriteLine("2. In order");
+            Console.WriteLine("3. Reverse order");
+            try { choice = Int32.Parse(Console.ReadLine()); }
+            catch { Console.WriteLine("OK Random order \n");
+                choice = 1;
+            }
+            switch(choice)
+            {
+                case 1:break;
+                case 2: Array.Sort(names); break;
+                case 3: Array.Sort(names);break;
+                default:Console.WriteLine("Random then");break;
+
+            }
+            
 
             return names;
         }
