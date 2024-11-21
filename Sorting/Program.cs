@@ -7,6 +7,8 @@ namespace Sorting
     {
 
         static Boolean optimised = false;
+        static string[] names;
+        string[] temp;
         static void Main(string[] args)
         {
             string[] names = CreateArray();
@@ -64,7 +66,14 @@ namespace Sorting
                             Array.Copy(names, temp, names.Length);//reload unsorted data
                             break;
                         }
-                    case 7:
+                        case 7:
+                        {
+                             names = CreateArray();
+                             temp = new string[names.Length];
+                            Array.Copy(names, temp, names.Length);
+                            break;
+                        }
+                    case 8:
                         {
                             Environment.Exit(0);
                             break;
@@ -75,12 +84,13 @@ namespace Sorting
                         }
 
                 }
-                Console.WriteLine($"\n Execution Time: {watch.ElapsedMilliseconds} ms");
+                Console.WriteLine($"\n Execution Time: {watch.ElapsedMilliseconds} ms \n");
                 watch.Reset();
             }
 
 
         }
+        
         static int menu()
         {
             int choice = 0;
@@ -92,7 +102,8 @@ namespace Sorting
                 Console.WriteLine("4. Merge Sort");
                 Console.WriteLine("5. Optimised Bubble Sort");
                 Console.WriteLine("6. Quick Sort");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("7. Generate a new data set");
+                Console.WriteLine("8. Exit");
                 try
                 { choice = Int32.Parse(Console.ReadLine()); }
                 catch
