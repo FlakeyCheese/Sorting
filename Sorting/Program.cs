@@ -9,8 +9,10 @@ namespace Sorting
         static Boolean optimised = false;
         static string[] names;
         string[] temp;
+        
         static void Main(string[] args)
         {
+            
             welcomeMessage();
             string[] names = CreateArray();
             string[] temp = new string[names.Length];
@@ -28,25 +30,31 @@ namespace Sorting
                         }
                     case 2:
                         {
-                            watch.Start();
+                            watch.Start();  
+                            SpinAnimation.Start();
                             insertionSort(temp);
                             watch.Stop();//stop timer
+                            SpinAnimation.Stop();
                             Array.Copy(names,temp,names.Length);//reload unsorted data
                             break;
                         }
                     case 3:
                         {
                             watch.Start();
+                            SpinAnimation.Start();
                             bubbleSort(temp);
                             watch.Stop();//stop timer
+                            SpinAnimation.Stop();
                             Array.Copy(names, temp, names.Length);//reload unsorted data
                             break;
                         }
                     case 4:
                         {
                             watch.Start();
+                            SpinAnimation.Start();
                             MergeSort(temp, 0, temp.Length - 1);
                             watch.Stop();
+                            SpinAnimation.Stop();
                             Array.Copy(names, temp, names.Length);
                             break;
                         }
@@ -54,16 +62,20 @@ namespace Sorting
                         {
                             optimised = true;
                             watch.Start();
+                            SpinAnimation.Start();
                             bubbleSort(temp);
                             watch.Stop();//stop timer
+                            SpinAnimation.Stop();
                             Array.Copy(names, temp, names.Length);//reload unsorted data
                             break;
                         }
                     case 6:
                         {
                             watch.Start();
+                            SpinAnimation.Start();
                             quickSort(temp,0,temp.Length-1);
                             watch.Stop();
+                            SpinAnimation.Stop();
                             Array.Copy(names, temp, names.Length);//reload unsorted data
                             break;
                         }
@@ -126,7 +138,7 @@ namespace Sorting
         {
             int choice;
             int qty = 0;
-            Console.WriteLine("How many names do you want (minimum 10, maximum 10001,000)?");
+            Console.WriteLine("How many names do you want (minimum 10, maximum 1000,000)?");
             Console.WriteLine("If you choose a value outside this you will get 10 names");
 
             try { qty = Int32.Parse(Console.ReadLine()); }
@@ -176,6 +188,7 @@ namespace Sorting
         }
         static Boolean compareStrings(string str1, string str2) //returns true if str1 < str2
         {
+            
             int comp = string.Compare(str1, str2);
             if (comp == -1)
             { return true; }
