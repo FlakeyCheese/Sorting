@@ -23,7 +23,7 @@ namespace Sorting
             {
                 switch (menu())
                 {
-                    case 1:
+                    case 1://print the array
                         {
                             print_array(temp);
                             break;
