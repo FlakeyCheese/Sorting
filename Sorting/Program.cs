@@ -5,7 +5,8 @@ namespace Sorting
 {
     class Program
     {
-
+        static int compCount;
+        static int swapCount;
         static Boolean optimised = false;
         static string[] names;
         string[] temp;
@@ -98,7 +99,11 @@ namespace Sorting
 
                 }
                 Console.WriteLine($"\n Execution Time: {watch.ElapsedMilliseconds} ms \n");
+                Console.WriteLine("Number of comparisons " + compCount);
+                Console.WriteLine("Number of swaps " + swapCount);    
                 watch.Reset();
+                compCount = 0;
+                swapCount = 0;
             }
 
 
@@ -188,7 +193,7 @@ namespace Sorting
         }
         static Boolean compareStrings(string str1, string str2) //returns true if str1 < str2
         {
-            
+            compCount++;
             int comp = string.Compare(str1, str2);
             if (comp == -1)
             { return true; }
@@ -239,7 +244,7 @@ namespace Sorting
             return (i + 1);
         }
         static void swap(string[] arr, int i, int j)
-        {
+        {   swapCount++;
             string temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
@@ -262,6 +267,7 @@ namespace Sorting
                         temp = arr[j];
                         arr[j] = arr[j + 1];
                         arr[j + 1] = temp;
+                        swapCount++;
                         swapped = true; //only used in the optimised version
                     }
 
@@ -289,6 +295,7 @@ namespace Sorting
                     if (compareStrings(temp, arr[j])) //is the current item smaller than the next item in the j loop
                     {
                         arr[j + 1] = arr[j]; //swap - note one less step here then bubble sort because we already put the current item in temp at line 41
+                        swapCount++;
                         arr[j] = temp;
 
                     }
