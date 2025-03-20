@@ -5,8 +5,8 @@ namespace Sorting
 {
     class Program
     {
-        static int compCount;
-        static int swapCount;
+        static long compCount;
+        static long swapCount;
         static Boolean optimised = false;
         static string[] names;
         string[] temp;
@@ -37,6 +37,7 @@ namespace Sorting
                             watch.Stop();//stop timer
                             SpinAnimation.Stop();
                             Array.Copy(names,temp,names.Length);//reload unsorted data
+                            Console.WriteLine("Insertion Sort");
                             break;
                         }
                     case 3:
@@ -47,6 +48,7 @@ namespace Sorting
                             watch.Stop();//stop timer
                             SpinAnimation.Stop();
                             Array.Copy(names, temp, names.Length);//reload unsorted data
+                            Console.WriteLine("Bubble Sort");
                             break;
                         }
                     case 4:
@@ -57,6 +59,7 @@ namespace Sorting
                             watch.Stop();
                             SpinAnimation.Stop();
                             Array.Copy(names, temp, names.Length);
+                            Console.WriteLine("Merge Sort");
                             break;
                         }
                     case 5:
@@ -68,6 +71,7 @@ namespace Sorting
                             watch.Stop();//stop timer
                             SpinAnimation.Stop();
                             Array.Copy(names, temp, names.Length);//reload unsorted data
+                            Console.WriteLine("Optimised Bubble Sort");
                             break;
                         }
                     case 6:
@@ -78,6 +82,7 @@ namespace Sorting
                             watch.Stop();
                             SpinAnimation.Stop();
                             Array.Copy(names, temp, names.Length);//reload unsorted data
+                            Console.WriteLine("Quick Sort");
                             break;
                         }
                         case 7:
@@ -98,9 +103,10 @@ namespace Sorting
                         }
 
                 }
+                Console.WriteLine("Number of Items: " + names.Length);
                 Console.WriteLine($"\n Execution Time: {watch.ElapsedMilliseconds} ms \n");
-                Console.WriteLine("Number of comparisons " + compCount);
-                Console.WriteLine("Number of swaps " + swapCount);    
+                Console.WriteLine("Number of comparisons: " + compCount);
+                Console.WriteLine("Number of swaps: " + swapCount); //merge sort doesn't rally do "swaps" so count will be zero   
                 watch.Reset();
                 compCount = 0;
                 swapCount = 0;
@@ -343,6 +349,7 @@ namespace Sorting
                 if (compareStrings(leftTempArray[i], rightTempArray[j]))
                 {
                     array[k++] = leftTempArray[i++];
+                    
                 }
                 else
                 {
