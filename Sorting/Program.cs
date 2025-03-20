@@ -199,7 +199,7 @@ namespace Sorting
         }
         static Boolean compareStrings(string str1, string str2) //returns true if str1 < str2
         {
-            compCount++;
+            compCount++;//count this comparison to make a total
             int comp = string.Compare(str1, str2);
             if (comp == -1)
             { return true; }
